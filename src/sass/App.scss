@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input {
+    button {
+        font-size: 22px;
+        padding: 5px;
+
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+}
+
+.map-container {
+    height: 900px;
+    width: 1000px;
+}
+
+.marker-icon {
+    font-size: 32px;
+    color: red;
+}
+
+img {
+    width: 500px;
+    height: 300px;
+}
