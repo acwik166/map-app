@@ -12,10 +12,11 @@ const getImageUrl = (name) => {
 
 function App() {
   const [location, setLocation] = useState(locations)
+  const [defaultLat, defaultLng] = location[0].coordinates
   const [currentLocation, setCurrentLocation] = useState(location[0])
-  const [coords, setCoords] = useState({ lat: location[0].coordinates[0], lng: location[0].coordinates[1] })
+  const [coords, setCoords] = useState()
 
-  const handleClick = (name) => {
+  const changeLocation = (name) => {
     const loc = location.filter((location) => location.name == name)
     setCurrentLocation(loc[0])
     setCoords({ lat: loc[0].coordinates[0], lng: loc[0].coordinates[1] })
@@ -26,9 +27,8 @@ function App() {
       <div className="left">
         <div className="input">
           {location.map((location) => (
-            <button onClick={() => handleClick(location.name)}>{location.name}</button>
+            <button onClick={() => changeLocation(location.name)}>{location.name}</button>
           ))}
-
         </div>
         <div className="images">
           {currentLocation.picture.map((pic) => (
@@ -41,7 +41,7 @@ function App() {
           bootstrapURLKeys={{
             key: import.meta.env.VITE_GOOGLE_MAP_API_KEY
           }}
-          defaultCenter={coords}
+          defaultCenter={{ lat: defaultLat, lng: defaultLng }}
           center={coords}
           defaultZoom={13}
           margin={[50, 50, 50, 50]}
